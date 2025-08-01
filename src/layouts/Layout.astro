@@ -1,0 +1,283 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Joker Casino - Tu acceso oficial al mejor casino online legal" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Joker Casino" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Joker Casino" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    
+    <!-- Preconnect for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Montserrat - Preload para evitar FOUC -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=block" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=block" rel="stylesheet"></noscript>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <title>{title}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/simbolo-2.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/simbolo-2.png" />
+    <link rel="apple-touch-icon" href="/images/simbolo-2.png" />
+    
+    <!-- Mobile optimizations -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+</head>
+<body>
+    <slot />
+</body>
+</html>
+
+<style is:global>
+    /* TIPOGRAFÍA DEFINITIVA - MONTSERRAT SIN FOUC */
+    html, body, * {
+        font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+        font-weight: 400 !important;
+        font-style: normal !important;
+        font-display: block !important; /* Evita el cambio durante carga */
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+        font-weight: 600 !important;
+    }
+    
+                /* TÍTULO PRINCIPAL MÁS PESADO */
+            .hero-title, .joker-text {
+                font-weight: 800 !important; /* Más grueso que 600 */
+            }
+            
+            /* "TU ACCESO OFICIAL" MÁS PESADO */
+            .highlight {
+                font-weight: 700 !important; /* Más peso que el subtítulo */
+            }
+    
+                .btn {
+                font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+                font-weight: 600 !important; /* Mismo peso que subtítulos para mejor balance */
+            }
+
+    /* CSS Reset y Mobile-First Approach */
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    html, body {
+        height: 100%;
+        overflow-x: hidden;
+    }
+    
+    body {
+
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: 
+            radial-gradient(ellipse at top, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+            linear-gradient(135deg, #0a0a0a 0%, #0f1f0f 50%, #000000 100%);
+        background-size: 100% 100%, 100% 100%;
+        background-attachment: fixed;
+        color: #ffffff;
+        min-height: 100vh;
+        touch-action: manipulation;
+    }
+    
+    /* Typography - LIMPIO */
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        line-height: 1.3;
+        color: #00FF88;
+        text-align: center;
+        text-transform: none;
+        letter-spacing: 0.5px;
+    }
+    
+    h1 {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+        text-shadow: 
+            0 2px 4px rgba(0, 0, 0, 0.8),
+            0 0 8px rgba(0, 255, 136, 0.6);
+        line-height: 1.1;
+    }
+    
+    h2 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+        opacity: 1;
+        text-transform: none;
+        letter-spacing: 0.3px;
+
+        line-height: 1.3;
+    }
+    
+    p {
+        font-size: clamp(1rem, 3.5vw, 1.125rem);
+        color: #f0f0f0;
+        text-align: center;
+        line-height: 1.6;
+        font-weight: 400;
+
+    }
+    
+    /* Button Base Styles */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 65px; /* Más grande para personas mayores */
+        padding: 1.25rem 2rem;
+        font-size: clamp(1.125rem, 4vw, 1.375rem);
+        font-weight: 800;
+
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: none;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        -webkit-tap-highlight-color: transparent;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+    }
+    
+    .btn:active {
+        transform: translateY(2px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Container */
+    .container {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    
+    /* Responsive utilities */
+    .text-center { text-align: center; }
+    .mb-1 { margin-bottom: 0.5rem; }
+    .mb-2 { margin-bottom: 1rem; }
+    .mb-3 { margin-bottom: 1.5rem; }
+    .mb-4 { margin-bottom: 2rem; }
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    .mt-3 { margin-top: 1.5rem; }
+    .mt-4 { margin-top: 2rem; }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes pulse-glow {
+        from {
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.6),
+                0 0 30px rgba(255, 215, 0, 0.4),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        to {
+            text-shadow: 
+                0 0 15px rgba(255, 215, 0, 1),
+                0 0 25px rgba(255, 215, 0, 0.8),
+                0 0 35px rgba(255, 215, 0, 0.6),
+                2px 2px 6px rgba(0, 0, 0, 0.9);
+        }
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes subtle-shift {
+        0%, 100% { 
+            background-position: 0% 0%, 0% 100%, 0% 0%;
+        }
+        33% { 
+            background-position: 30% 20%, 70% 80%, 20% 30%;
+        }
+        66% { 
+            background-position: 70% 80%, 30% 20%, 80% 70%;
+        }
+    }
+    
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    /* Media Queries */
+    @media (min-width: 768px) {
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+        }
+        
+        .btn {
+            min-height: 60px;
+            padding: 1.25rem 2.5rem;
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .container {
+            max-width: 800px;
+        }
+    }
+</style>
